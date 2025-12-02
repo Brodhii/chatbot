@@ -229,71 +229,52 @@
 
         appendMessage("user", msgText);
         chatInput.value = "";
-        
-        // Check scope
-        if (!isCoastalTopic(msgText)) {
-          setTimeout(() => {
-            showTyping();
-            setTimeout(() => {
-              hideTyping();
-              appendMessage("bot", getScopeResponse());
-            }, 1000);
-          }, 300);
-          return;
-        }
 
-        // Send to backend
+        // langsung kirim ke backend (frontend tidak lagi memfilter topik)
         showTyping();
         try {
           const response = await fetch(`/get?msg=${encodeURIComponent(msgText)}`);
-          const data = await response.json();  
+          const data = await response.json();
 
           setTimeout(() => {
-              hideTyping();
+            hideTyping();
 
-              let botMessage = data.response;
+            let botMessage = data.response || "Maaf, tidak ada respons.";
+            if (data.url) {
+              botMessage += `<br><a href="${data.url}" target="_blank" class="bot-link">🔗 Buka Website</a>`;
+            }
 
-              if (data.url) {
-                  botMessage += `<br><a href="${data.url}" target="_blank" class="bot-link">🔗 Buka Website</a>`;
-              }
-
-              appendMessage("bot", botMessage);
+            appendMessage("bot", botMessage);
           }, 600);
 
         } catch (error) {
           hideTyping();
           appendMessage("bot", "Terjadi kesalahan server.");
         }
-
-
       });
-
        
 function sendMessage() {
     let userText = $("#textInput").val();
     $("#textInput").val("");
 
-    // tampilkan pesan user
-    $("#chatbox").append(`
-        <div class="user-message">${userText}</div>
-    `);
+          // tampilkan pesan user
+          $("#chatbox").append(`
+              <div class="user-message">${userText}</div>
+          `);
 
-    $.get("/get", { msg: userText }, function(data) {
-        let botMsg = data.response;
+          $.get("/get", { msg: userText }, function(data) {
+              let botMsg = data.response;
 
-        // jika ada URL → tampilkan tombol menuju website
-        if (data.url) {
-            botMsg += `<br><a href="${data.url}" target="_blank" class="bot-link">🔗 Buka Website</a>`;
-        }
+              // jika ada URL → tampilkan tombol menuju website
+              if (data.url) {
+                  botMsg += `<br><a href="${data.url}" target="_blank" class="bot-link">🔗 Buka Website</a>`;
+              }
 
-        $("#chatbox").append(`
-            <div class="bot-message">${botMsg}</div>
-        `);
-    });
-}
-
-
-
+              $("#chatbox").append(`
+                  <div class="bot-message">${botMsg}</div>
+              `);
+          });
+      }
 
       function appendMessage(type, text) {
         const time = formatDate(new Date());
@@ -339,7 +320,7 @@ function sendMessage() {
                       'mangrove', 'karang', 'polusi', 'ekosistem', 'perikanan', 
                       'lingkungan', 'biota', 'habitat', 'terumbu', 'bakau', 'estuari',
                       'erosi', 'abrasi', 'tsunami', 'plastik', 'sampah', 'pencemaran',
-                      'perubahan iklim', 'adaptasi', 'penyuluhan', 'edukasi'];
+                      'perubahan iklim', 'adaptasi', 'penyuluhan', 'edukasi', 'halo', 'link'];
         const lowerText = text.toLowerCase();
         return topics.some(topic => lowerText.includes(topic));
       }
