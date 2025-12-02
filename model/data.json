@@ -1,0 +1,445 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": [
+        "Halo",
+        "Hi",
+        "Hai",
+        "Hello bot",
+        "halo bot",         
+        "hello",            
+        "Assalamualaikum",
+        "Selamat pagi",
+        "Selamat siang",
+        "Selamat malam",
+        "pagi",             
+        "siang",            
+        "malam",            
+        "Apa kabar",
+        "Halo chatbot",
+        "Pagi bot",
+        "Bot ada?",
+        "bot",             
+        "pagi min",        
+        "hallo",           
+        "selamat sore"     
+      ],
+      "responses": [
+        "Halo! Senang bertemu denganmu. Ada yang bisa saya bantu?",
+        "Hai! Ada pertanyaan tentang lingkungan pesisir?",
+        "Selamat datang! Saya Asisten Pesisir. Mari kita jelajahi ilmu kelautan." 
+      ]
+    },
+
+    {
+      "tag": "goodbye",
+      "patterns": [
+        "Terima kasih bot",
+        "Dadah",
+        "Sampai jumpa",
+        "Goodbye",
+        "Bye",
+        "Saya pergi dulu",
+        "sampai jumpa lagi", 
+        "dada bot",        
+        "aku cabut",         
+        "udahan dulu ya"    
+      ],
+      "responses": [
+        "Sampai jumpa! Jaga lingkungan pesisir ya!",
+        "Dadah, semoga harimu menyenangkan!",
+        "Terima kasih sudah belajar tentang ekosistem pesisir!"
+      ]
+    },
+
+    {
+      "tag": "thanks",
+      "patterns": [
+        "Terima kasih",
+        "Makasih bot",
+        "Makasih",         
+        "Thanks",
+        "thanks bot",        
+        "Trimakasih",
+        "Matur nuwun",
+        "terimakasih banyak",
+        "oke makasih"        
+      ],
+      "responses": [
+        "Sama-sama!",
+        "Senang bisa membantu!",
+        "Dengan senang hati!",
+        "Tentu saja!" 
+      ]
+    },
+    {
+      "tag": "pesisir_pengertian",
+      "patterns": [
+        "Apa itu wilayah pesisir?",
+        "Jelaskan tentang pesisir",
+        "Wilayah pesisir itu apa?",
+        "Definisi pesisir",
+        "Apa yang dimaksud wilayah pesisir?"
+      ],
+      "responses": [
+        "Wilayah pesisir adalah daerah peralihan antara darat dan laut yang dipengaruhi oleh proses laut seperti pasang surut, gelombang, dan angin.",
+        "Pesisir adalah area yang mencakup pantai, tebing, mangrove, hingga daerah estuari yang saling berinteraksi dengan ekosistem laut."
+      ]
+    },
+
+    {
+      "tag": "pesisir_manfaat",
+      "patterns": [
+        "Apa manfaat wilayah pesisir?",
+        "Fungsi pesisir bagi manusia",
+        "Untuk apa wilayah pesisir digunakan?",
+        "Kegunaan pesisir"
+      ],
+      "responses": [
+        "Wilayah pesisir dimanfaatkan sebagai sumber perikanan, pariwisata, transportasi, dan pengembangan ekonomi masyarakat pesisir.",
+        "Pesisir berfungsi sebagai habitat biota, tempat wisata, jalur perdagangan, dan lokasi industri kelautan."
+      ]
+    },
+
+    {
+      "tag": "pesisir_masalah",
+      "patterns": [
+        "Masalah apa yang sering terjadi di wilayah pesisir?",
+        "Permasalahan lingkungan pesisir",
+        "Ancaman di pesisir",
+        "Kerusakan wilayah pesisir"
+      ],
+      "responses": [
+        "Masalah umum di pesisir meliputi abrasi pantai, sampah plastik, pencemaran laut, kerusakan mangrove, dan kenaikan muka air laut.",
+        "Ancaman pesisir terbesar adalah erosi, polusi, overfishing, serta pembangunan tanpa perencanaan."
+      ]
+    },
+
+    {
+      "tag": "mangrove_pengertian",
+      "patterns": [
+        "Apa itu mangrove?",
+        "Jelaskan tentang hutan mangrove",
+        "Mangrove itu apa?",
+        "Pengertian mangrove"
+      ],
+      "responses": [
+        "Mangrove adalah tumbuhan yang hidup di daerah pasang surut pantai dan memiliki kemampuan untuk bertahan di air asin.",
+        "Hutan mangrove merupakan ekosistem penting yang berfungsi sebagai pelindung pesisir dari gelombang dan abrasi."
+      ]
+    },
+
+    {
+      "tag": "mangrove_manfaat",
+      "patterns": [
+        "Apa manfaat hutan mangrove?",
+        "Fungsi mangrove bagi lingkungan",
+        "Untuk apa mangrove penting?",
+        "Kegunaan mangrove"
+      ],
+      "responses": [
+        "Mangrove bermanfaat untuk mencegah abrasi, menjadi habitat ikan, menyerap karbon, dan melindungi pantai dari tsunami.",
+        "Mangrove juga penting untuk menjaga kualitas air dan menyediakan sumber ekonomi bagi masyarakat pesisir."
+      ]
+    },
+
+    {
+      "tag": "mangrove_kerusakan",
+      "patterns": [
+        "Mengapa mangrove bisa rusak?",
+        "Penyebab kerusakan mangrove",
+        "Apa yang merusak mangrove?",
+        "Kerusakan hutan mangrove"
+      ],
+      "responses": [
+        "Mangrove rusak akibat alih fungsi lahan, pencemaran, penebangan ilegal, dan pembangunan tambak yang tidak berkelanjutan.",
+        "Aktivitas manusia seperti pembuangan limbah dan reklamasi pantai juga mempercepat kerusakan mangrove."
+      ]
+    },
+
+    {
+      "tag": "karang_pengertian",
+      "patterns": [
+        "Apa itu terumbu karang?",
+        "Pengertian karang",
+        "Karang laut itu apa?",
+        "Fungsi terumbu karang"
+      ],
+      "responses": [
+        "Terumbu karang adalah ekosistem laut yang terbentuk dari koloni organisme kecil bernama polip karang. Mereka penting sebagai habitat ikan.",
+        "Ekosistem terumbu karang merupakan rumah bagi 25% biota laut meskipun hanya menempati 1% permukaan laut dunia."
+      ]
+    },
+
+    {
+      "tag": "karang_kerusakan",
+      "patterns": [
+        "Apa penyebab kerusakan terumbu karang?",
+        "Mengapa karang bisa mati?",
+        "Kerusakan terumbu karang disebabkan oleh apa?",
+        "Coral bleaching"
+      ],
+      "responses": [
+        "Kerusakan terumbu karang disebabkan oleh pemanasan laut, pencemaran, penangkapan ikan destruktif, dan sedimentasi berlebih.",
+        "Coral bleaching terjadi karena suhu laut naik sehingga zooxanthellae keluar dari jaringan karang."
+      ]
+    },
+
+    {
+      "tag": "karang_pelestarian",
+      "patterns": [
+        "Bagaimana cara menjaga terumbu karang?",
+        "Cara melestarikan terumbu karang",
+        "Upaya menjaga karang",
+        "Penyelamatan ekosistem karang"
+      ],
+      "responses": [
+        "Upaya pelestarian karang termasuk pengurangan polusi, pengendalian wisata, penanaman karang, dan penegakan hukum terhadap destructive fishing.",
+        "Pelestarian karang dapat dilakukan melalui restorasi karang, pengaturan wisata selam, dan edukasi masyarakat pesisir."
+      ]
+    },
+
+    {
+      "tag": "polusi_laut_pengertian",
+      "patterns": [
+        "Apa itu polusi laut?",
+        "Pencemaran laut itu apa?",
+        "Definisi polusi laut",
+        "Jelaskan pencemaran laut"
+      ],
+      "responses": [
+        "Polusi laut adalah masuknya bahan berbahaya seperti plastik, minyak, limbah kimia, atau sampah ke ekosistem laut.",
+        "Pencemaran laut mengganggu kehidupan organisme laut dan merusak rantai makanan."
+      ]
+    },
+
+    {
+      "tag": "polusi_laut_sumber",
+      "patterns": [
+        "Apa penyebab polusi laut?",
+        "Sumber pencemaran laut",
+        "Dari mana polusi laut berasal?",
+        "Penyebab pencemaran laut"
+      ],
+      "responses": [
+        "Polusi laut berasal dari sampah plastik, limbah industri, pertanian, tumpahan minyak, dan aktivitas pelayaran.",
+        "Sumber lainnya termasuk limbah rumah tangga, air larian sungai, dan pembuangan sampah langsung ke laut."
+      ]
+    },
+
+    {
+      "tag": "perikanan_pengertian",
+      "patterns": [
+        "Apa itu perikanan berkelanjutan?",
+        "Definisi sustainable fisheries",
+        "Penjelasan perikanan berkelanjutan"
+      ],
+      "responses": [
+        "Perikanan berkelanjutan adalah pengelolaan sumber daya ikan yang mempertimbangkan keberlanjutan ekosistem dan kesejahteraan ekonomi.",
+        "Sustainable fisheries menjaga populasi ikan tetap stabil dan tidak merusak lingkungan."
+      ]
+    },
+
+    {
+      "tag": "perikanan_masalah",
+      "patterns": [
+        "Masalah perikanan saat ini",
+        "Ancaman perikanan",
+        "Apa tantangan perikanan?"
+      ],
+      "responses": [
+        "Masalah utama perikanan adalah overfishing, illegal fishing, bycatch, dan kerusakan habitat.",
+        "Tantangan lainnya termasuk perubahan iklim dan polusi yang mempengaruhi populasi ikan."
+      ]
+    },
+
+    {
+      "tag": "perikanan_upaya",
+      "patterns": [
+        "Cara menjaga keberlanjutan perikanan",
+        "Solusi perikanan berkelanjutan",
+        "Upaya mengatasi overfishing"
+      ],
+      "responses": [
+        "Upaya yang dapat dilakukan adalah pembatasan penangkapan, penggunaan alat ramah lingkungan, dan pengawasan wilayah.",
+        "Penguatan regulasi, MPAs (Marine Protected Areas), dan edukasi nelayan sangat penting."
+      ]
+    },
+
+    {
+      "tag": "estuari_pengertian",
+      "patterns": [
+        "Apa itu estuari?",
+        "Pengertian ekosistem estuari",
+        "Estuari itu apa?",
+        "Jelaskan estuari"
+      ],
+      "responses": [
+        "Estuari adalah pertemuan antara air laut dan air tawar, biasanya berada di muara sungai.",
+        "Ekosistem estuari kaya nutrien dan menjadi tempat pemijahan ikan."
+      ]
+    },
+
+    {
+      "tag": "estuari_manfaat",
+      "patterns": [
+        "Apa manfaat estuari?",
+        "Fungsi ekosistem estuari",
+        "Kegunaan estuari"
+      ],
+      "responses": [
+        "Estuari berfungsi sebagai nursery ground ikan, pengendali banjir, dan penyaring polutan alami.",
+        "Estuari mendukung produktivitas perikanan lokal."
+      ]
+    },
+
+    {
+      "tag": "perubahan_iklim_pengertian",
+      "patterns": [
+        "Apa itu perubahan iklim?",
+        "Pengertian climate change",
+        "Jelaskan perubahan iklim"
+      ],
+      "responses": [
+        "Perubahan iklim adalah perubahan jangka panjang pada suhu dan cuaca akibat aktivitas manusia seperti emisi gas rumah kaca.",
+        "Climate change memicu kenaikan permukaan laut, pemutihan karang, dan cuaca ekstrem."
+      ]
+    },
+
+    {
+      "tag": "adaptasi_iklim",
+      "patterns": [
+        "Bagaimana adaptasi perubahan iklim?",
+        "Cara masyarakat menghadapi perubahan iklim",
+        "Strategi adaptasi iklim"
+      ],
+      "responses": [
+        "Adaptasi iklim dapat dilakukan dengan pembangunan tanggul, restorasi mangrove, early warning system, dan diversifikasi mata pencaharian.",
+        "Masyarakat pesisir perlu meningkatkan ketahanan melalui perencanaan tata ruang berbasis risiko."
+      ]
+    },
+
+    {
+      "tag": "plastik_pengertian",
+      "patterns": [
+        "Apa itu sampah plastik?",
+        "Mengapa plastik berbahaya?",
+        "Sampah plastik di laut"
+      ],
+      "responses": [
+        "Sampah plastik adalah limbah non-organik yang sulit terurai dan dapat mencemari lingkungan selama ratusan tahun.",
+        "Di laut, plastik dapat dimakan hewan laut dan menyebabkan kematian massal."
+      ]
+    },
+
+    {
+      "tag": "plastik_solusi",
+      "patterns": [
+        "Bagaimana cara mengurangi sampah plastik?",
+        "Solusi sampah plastik",
+        "Cara mengatasi plastik di laut"
+      ],
+      "responses": [
+        "Solusi termasuk daur ulang, penggunaan kantong ramah lingkungan, larangan plastik sekali pakai, dan edukasi masyarakat.",
+        "Gerakan bersih pantai, pengurangan konsumsi plastik, dan inovasi biodegredable sangat penting."
+      ]
+    },
+
+    {
+      "tag": "erosi_pengertian",
+      "patterns": [
+        "Apa itu erosi pantai?",
+        "Pengertian abrasi",
+        "Abrasi pantai itu apa?"
+      ],
+      "responses": [
+        "Erosi pantai adalah pengikisan daratan oleh gelombang dan arus laut.",
+        "Abrasi dapat menyebabkan hilangnya pantai, kerusakan permukiman, dan hilangnya habitat pesisir."
+      ]
+    },
+
+    {
+      "tag": "erosi_penyebab",
+      "patterns": [
+        "Apa penyebab erosi pantai?",
+        "Kenapa pantai bisa tergerus?",
+        "Penyebab abrasi"
+      ],
+      "responses": [
+        "Penyebabnya termasuk gelombang kuat, badai, kenaikan muka laut, penggundulan mangrove, dan pembangunan yang mengganggu aliran sedimen.",
+        "Abrasi juga dipengaruhi oleh perubahan iklim."
+      ]
+    },
+
+    {
+      "tag": "erosi_solusi",
+      "patterns": [
+        "Bagaimana cara mencegah erosi pantai?",
+        "Solusi abrasi",
+        "Cara mengatasi abrasi pantai"
+      ],
+      "responses": [
+        "Solusinya adalah penanaman mangrove, pembangunan pemecah ombak, geotube, dan restorasi vegetasi pantai.",
+        "Pendekatan berbasis alam lebih efektif daripada bangunan keras."
+      ]
+    },
+
+    {
+      "tag": "edukasi_pesisir",
+      "patterns": [
+        "Mengapa edukasi masyarakat pesisir penting?",
+        "Pentingnya edukasi pesisir",
+        "Mengapa masyarakat pesisir harus diedukasi?"
+      ],
+      "responses": [
+        "Edukasi pesisir penting agar masyarakat memahami risiko bencana, konservasi, dan pemanfaatan sumber daya secara bijak.",
+        "Kesadaran masyarakat adalah kunci keberhasilan perlindungan ekosistem pesisir."
+      ]
+    },
+
+    {
+      "tag": "edukasi_program",
+      "patterns": [
+        "Program edukasi apa saja untuk masyarakat pesisir?",
+        "Contoh program edukasi pesisir",
+        "Apa program pemberdayaan masyarakat pesisir?"
+      ],
+      "responses": [
+        "Contoh program: pelatihan konservasi mangrove, sekolah pantai, pengawasan berbasis masyarakat, pelatihan wisata bahari berkelanjutan.",
+        "Program edukasi mencakup kampanye bersih pantai, monitoring karang, dan pelatihan mitigasi bencana."
+      ]
+    },
+    {
+    "tag": "buka_website",
+    "patterns": [
+        "buka website",
+        "mau buka web",
+        "buka link",
+        "kunjungi website",
+        "open website",
+        "buka situs"
+    ],
+    "responses": [
+        "Baik, berikut website yang bisa kamu kunjungi:"
+    ],
+    "url": "https://si-perikanan.onrender.com/#peta"
+    },
+
+    
+    {
+      "tag": "fallback",
+      "patterns": [
+        "????",
+        "saya tidak mengerti",
+        "bisa ulangi",
+        "random text",
+        "xxx"
+      ],
+      "responses": [
+        "Maaf, saya belum memahami maksud kamu. Bisa ulangi dengan lebih jelas?",
+        "Saya belum paham. Silakan gunakan kata lain."
+      ]
+    }
+  ]
+}

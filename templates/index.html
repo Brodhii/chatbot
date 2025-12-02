@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Edukasi Pesisir</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Chatbot Edukasi Pesisir Laut - Belajar tentang konservasi dan kelestarian lingkungan">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="chat-wrapper">
+    <!-- Header dengan gradient -->
+    <header class="chat-header">
+      <div class="header-left">
+        <div class="avatar">
+          <i class="fas fa-water"></i>
+        </div>
+        <div class="header-text">
+          <h1>Edukasi Pesisir</h1>
+          <p>Asisten Konservasi Laut</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="themeToggle" title="Ubah tema">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="icon-btn" id="infoBtn" title="Informasi">
+          <i class="fas fa-info-circle"></i>
+        </button>
+        <button class="icon-btn" id="clearChat" title="Hapus percakapan">
+          <i class="fas fa-trash"></i>
+        </button>
+      </div>
+    </header>
+
+    <!-- Chat Area -->
+    <main class="chat-area" id="chatWindow">
+      <!-- Welcome Message -->
+      <div class="message bot-msg welcome-msg">
+        <div class="msg-content">
+          <div class="msg-header">
+            <span class="msg-name">Asisten Pesisir</span>
+            <span class="msg-time" id="welcome-time"></span>
+          </div>
+          <div class="msg-body">
+            <div class="welcome-header">
+              <div class="welcome-icon">
+                <i class="fas fa-water"></i>
+              </div>
+              <div class="welcome-text">
+                <h3>Selamat Datang di Edukasi Pesisir! 🌊</h3>
+                <p>Saya siap membantu Anda belajar dan memahami pentingnya menjaga lingkungan pesisir laut Indonesia. Mari bersama-sama melestarikan keindahan laut kita!</p>
+              </div>
+            </div>
+            
+            <div class="suggestions-box">
+              <p class="suggestions-label">Pertanyaan umum yang sering diajukan:</p>
+              <div class="suggestion-btns">
+                <button class="suggestion-btn" data-question="Apa itu ekosistem pesisir?">
+                  <i class="fas fa-tree"></i>
+                  <span>Ekosistem Pesisir</span>
+                </button>
+                <button class="suggestion-btn" data-question="Bagaimana cara menjaga laut dari polusi?">
+                  <i class="fas fa-recycle"></i>
+                  <span>Cara Menjaga Laut</span>
+                </button>
+                <button class="suggestion-btn" data-question="Apa manfaat hutan mangrove bagi lingkungan?">
+                  <i class="fas fa-leaf"></i>
+                  <span>Manfaat Mangrove</span>
+                </button>
+                <button class="suggestion-btn" data-question="Apa itu perikanan berkelanjutan?">
+                  <i class="fas fa-fish"></i>
+                  <span>Perikanan Berkelanjutan</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Typing Indicator -->
+    <div class="typing-indicator" id="typingIndicator">
+      <div class="typing-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <span>Asisten sedang mengetik...</span>
+    </div>
+
+    <!-- Input Area -->
+    <form class="chat-input-area">
+      <div class="input-container">
+        <input type="text" 
+               class="message-input" 
+               id="textInput" 
+               placeholder="Tanyakan tentang pesisir laut (contoh: cara melestarikan terumbu karang)..."
+               autocomplete="off"
+               autofocus>
+        <button type="submit" class="send-btn">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Info Modal -->
+  <div class="modal" id="infoModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-info-circle"></i> Tentang Edukasi Pesisir</h3>
+        <button class="close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Edukasi Pesisir</strong> adalah asisten virtual yang membantu Anda memahami berbagai aspek lingkungan pesisir laut Indonesia:</p>
+        <div class="modal-features">
+          <div class="feature-item">
+            <i class="fas fa-water"></i>
+            <span>Ekosistem Pesisir</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-tree"></i>
+            <span>Konservasi Mangrove</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-fish"></i>
+            <span>Perikanan Berkelanjutan</span>
+          </div>
+          <div class="feature-item">
+            <i class="fas fa-trash"></i>
+            <span>Penanganan Polusi</span>
+          </div>
+        </div>
+        <div class="note">
+          <i class="fas fa-exclamation-circle"></i>
+          <p>Chatbot ini hanya menjawab pertanyaan terkait edukasi pesisir laut. Pertanyaan di luar topik akan diarahkan kembali ke tema konservasi lingkungan.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Set waktu pembuka
+      document.getElementById('welcome-time').textContent = formatDate(new Date());
+      
+      const chatForm = document.querySelector(".chat-input-area");
+      const chatInput = document.querySelector(".message-input");
+      const chatArea = document.querySelector(".chat-area");
+      const themeToggle = document.getElementById("themeToggle");
+      const clearChatBtn = document.getElementById("clearChat");
+      const infoBtn = document.getElementById("infoBtn");
+      const typingIndicator = document.getElementById("typingIndicator");
+      const infoModal = document.getElementById("infoModal");
+      const closeModal = document.querySelector(".close-btn");
+
+      const BOT_NAME = "Asisten Pesisir";
+
+      // Toggle tema
+      themeToggle.addEventListener("click", () => {
+        document.body.classList.toggle("dark-theme");
+        const icon = themeToggle.querySelector("i");
+        if (document.body.classList.contains("dark-theme")) {
+          icon.classList.remove("fa-moon");
+          icon.classList.add("fa-sun");
+          localStorage.setItem("theme", "dark");
+        } else {
+          icon.classList.remove("fa-sun");
+          icon.classList.add("fa-moon");
+          localStorage.setItem("theme", "light");
+        }
+      });
+
+      // Load tema tersimpan
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-theme");
+        const icon = themeToggle.querySelector("i");
+        icon.classList.remove("fa-moon");
+        icon.classList.add("fa-sun");
+      }
+
+      // Modal
+      infoBtn.addEventListener("click", () => {
+        infoModal.style.display = "flex";
+      });
+
+      closeModal.addEventListener("click", () => {
+        infoModal.style.display = "none";
+      });
+
+      window.addEventListener("click", (e) => {
+        if (e.target === infoModal) {
+          infoModal.style.display = "none";
+        }
+      });
+
+      // Clear chat
+      clearChatBtn.addEventListener("click", () => {
+        if (confirm("Hapus semua percakapan?")) {
+          const welcomeMsg = document.querySelector(".welcome-msg");
+          chatArea.innerHTML = "";
+          if (welcomeMsg) {
+            chatArea.appendChild(welcomeMsg);
+            document.getElementById('welcome-time').textContent = formatDate(new Date());
+          }
+        }
+      });
+
+      // Tombol saran langsung kirim
+      document.querySelectorAll(".suggestion-btn").forEach(btn => {
+        btn.addEventListener("click", function(e) {
+          e.preventDefault();
+          const question = this.getAttribute("data-question");
+          chatInput.value = question;
+          chatForm.dispatchEvent(new Event("submit"));
+        });
+      });
+
+      // Submit form
+      chatForm.addEventListener("submit", async function(e) {
+        e.preventDefault();
+        const msgText = chatInput.value.trim();
+        if (!msgText) return;
+
+        appendMessage("user", msgText);
+        chatInput.value = "";
+        
+        // Check scope
+        if (!isCoastalTopic(msgText)) {
+          setTimeout(() => {
+            showTyping();
+            setTimeout(() => {
+              hideTyping();
+              appendMessage("bot", getScopeResponse());
+            }, 1000);
+          }, 300);
+          return;
+        }
+
+        // Send to backend
+        showTyping();
+        try {
+          const response = await fetch(`/get?msg=${encodeURIComponent(msgText)}`);
+          const data = await response.json();  
+
+          setTimeout(() => {
+              hideTyping();
+
+              let botMessage = data.response;
+
+              if (data.url) {
+                  botMessage += `<br><a href="${data.url}" target="_blank" class="bot-link">🔗 Buka Website</a>`;
+              }
+
+              appendMessage("bot", botMessage);
+          }, 600);
+
+        } catch (error) {
+          hideTyping();
+          appendMessage("bot", "Terjadi kesalahan server.");
+        }
+
+
+      });
+
+       
+function sendMessage() {
+    let userText = $("#textInput").val();
+    $("#textInput").val("");
+
+    // tampilkan pesan user
+    $("#chatbox").append(`
+        <div class="user-message">${userText}</div>
+    `);
+
+    $.get("/get", { msg: userText }, function(data) {
+        let botMsg = data.response;
+
+        // jika ada URL → tampilkan tombol menuju website
+        if (data.url) {
+            botMsg += `<br><a href="${data.url}" target="_blank" class="bot-link">🔗 Buka Website</a>`;
+        }
+
+        $("#chatbox").append(`
+            <div class="bot-message">${botMsg}</div>
+        `);
+    });
+}
+
+
+
+
+      function appendMessage(type, text) {
+        const time = formatDate(new Date());
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${type}-msg`;
+        
+        let messageContent = '';
+        
+        if (type === 'bot') {
+          messageContent = `
+            <div class="msg-content">
+              <div class="msg-header">
+                <span class="msg-name">${BOT_NAME}</span>
+              </div>
+              <div class="msg-body">
+                ${formatText(text)}
+                <div class="msg-time">${time}</div>
+              </div>
+            </div>
+          `;
+        } else {
+          messageContent = `
+            <div class="msg-content">
+              <div class="msg-body">
+                ${formatText(text)}
+                <div class="msg-time">${time}</div>
+              </div>
+            </div>
+          `;
+        }
+        
+        messageDiv.innerHTML = messageContent;
+        chatArea.appendChild(messageDiv);
+        scrollToBottom();
+      }
+
+      function formatText(text) {
+        return text.replace(/\n/g, '<br>');
+      }
+
+      function isCoastalTopic(text) {
+        const topics = ['laut', 'pesisir', 'pantai', 'ikan', 'nelayan', 'konservasi', 
+                      'mangrove', 'karang', 'polusi', 'ekosistem', 'perikanan', 
+                      'lingkungan', 'biota', 'habitat', 'terumbu', 'bakau', 'estuari',
+                      'erosi', 'abrasi', 'tsunami', 'plastik', 'sampah', 'pencemaran',
+                      'perubahan iklim', 'adaptasi', 'penyuluhan', 'edukasi'];
+        const lowerText = text.toLowerCase();
+        return topics.some(topic => lowerText.includes(topic));
+      }
+
+      function getScopeResponse() {
+        const responses = [
+          "Maaf, fokus saya hanya pada edukasi pesisir laut.<br><br>Coba tanyakan tentang:<br>• Ekosistem pesisir<br>• Konservasi laut<br>• Jenis biota laut<br>• Perikanan berkelanjutan",
+          "Saya khusus membantu topik lingkungan pesisir. Anda bisa bertanya:<br><br>\"Bagaimana melestarikan mangrove?\"<br>\"Apa bahaya polusi laut?\"<br>\"Apa itu terumbu karang?\""
+        ];
+        return responses[Math.floor(Math.random() * responses.length)];
+      }
+
+      function showTyping() {
+        typingIndicator.style.display = "flex";
+        scrollToBottom();
+      }
+
+      function hideTyping() {
+        typingIndicator.style.display = "none";
+      }
+
+      function scrollToBottom() {
+        chatArea.scrollTop = chatArea.scrollHeight;
+      }
+
+      function formatDate(date) {
+        const h = date.getHours().toString().padStart(2, '0');
+        const m = date.getMinutes().toString().padStart(2, '0');
+        return `${h}:${m}`;
+      }
+
+      // Enter untuk submit
+      chatInput.addEventListener("keydown", function(e) {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          chatForm.dispatchEvent(new Event("submit"));
+        }
+      });
+
+      // Auto-focus
+      chatInput.focus();
+    });
+  </script>
+</body>
+</html>
